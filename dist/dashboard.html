@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+        }
+        header {
+            background-color: black;
+            padding: 20px;
+            display: flex;
+            align-items: center; 
+            justify-content: space-between; 
+            margin-bottom: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(0, 255, 0);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center; 
+            flex-grow: 1;
+            margin: 0 20px; 
+        }
+        .search-bar input[type="text"] {
+            padding: 10px; 
+            border: none;
+            border-radius: 10px;
+            flex-grow: 1; 
+            margin-right: 5px; 
+            color: white;
+            background-color: #1a1b20; 
+        }
+        .search-icon {
+            color: rgb(0, 255, 0);
+            cursor: pointer;
+            font-size: 30px; 
+            margin-left: 10px;
+        }
+        .actions {
+            display: flex;
+            align-items: center; 
+        }
+        .actions button {
+            background-color: rgb(0, 255, 0);
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.35s;
+            margin-left: 10px;
+        }
+        .actions button:hover {
+            background-color: rgb(255, 0, 255);
+            color: white;
+        }
+        .notification {
+            margin-left: 15px; 
+        }
+        .profile-pic {
+            margin-left: 15px; 
+            color: rgb(0, 255, 0);
+            font-size: 30px; 
+        }
+        .container {
+            display: flex;
+            flex-direction: column; 
+            height: 190px; 
+            position: relative;
+        }
+        .dashboard-header {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            background: black;
+        }
+        .dashboard-header div {
+            color: rgb(0, 255, 0);
+            background-color: #1a1b20;
+            height: 120px;
+            width: 410px;
+            border: 2px solid black;
+            margin-top:10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            border-radius: 10px;
+            padding:20px;
+            border: 2px solid #1a1b20;
+            transition-duration: .35s;
+            font-family: 'Segoe UI';
+            display: flex;
+        }
+        .dashboard-header div:hover {
+            border: 2px solid rgb(0, 255, 0);
+            transform: scale(1.1);
+        }
+        .main-content {
+            display: flex; 
+            flex-grow: 1;
+            padding: 20px;
+            background-color:black ;
+        }
+        .sidebar {
+            width: 250px;
+            height: 320px;
+            padding: 5px; 
+            background-color:black ;
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease-in-out;
+            position: relative; 
+            overflow: hidden;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(1);
+            }
+        }
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: -50%; 
+            left: -50%; 
+            width: 250px;
+            height: 320px;
+            background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+            z-index: 1; 
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+        }
+        .sidebar::after {
+            content: '';
+            position: absolute; 
+            top: -50%; 
+            left: -50%; 
+            width: 250px;                                           
+            height: 320px;
+            background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+            z-index: 1; 
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+            animation-delay: -3s;
+        }
+        .borderLine {
+            position: absolute;
+            top: 0 ;
+            inset: 0;
+        }
+        .borderLine::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 250px;                                           
+            height: 320px;
+            background: linear-gradient(0deg,transparent,
+            transparent,#ff2770,#ff2770,#ff2770);
+            z-index:1;
+            transform-origin:bottom right;
+            animation: animate 6s linear infinite ;
+            animation-delay: -1.5s;
+        }
+        .borderLine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 250px;                                           
+            height: 320px;
+            background: linear-gradient(0deg,transparent,
+            transparent,#ff2770,#ff2770,#ff2770);
+            z-index:1;
+            transform-origin:bottom right;
+            animation: animate 6s linear infinite ;
+            animation-delay: -4.5s;
+        }
+        @keyframes animate 
+        {
+            0% 
+            {
+                transform: rotate(0deg);
+            }
+            100%
+            {
+                transform: rotate(360deg);
+            }
+        }
+        .sidebar ul {
+            list-style: none;
+            padding-left:10px;
+            position: absolute;
+            margin: 0;
+            background: #1a1b20;
+            border-radius: 8px;
+            z-index: 2;
+            width: 240px;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar ul li {
+            margin: 6px 0;
+        }
+        .sidebar ul li a {
+            color: rgb(0, 255, 0);
+            background-color: inherit;
+            text-decoration: none;
+        }
+        .sidebar ul li a:hover{
+            color: rgb(255, 0, 255);
+            text-decoration: underline;
+        }
+        .sidebar ul button {
+            background-color: rgb(0, 255, 0);
+            color: black;
+            border: none;
+            padding: 10px;
+            width: 200px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.35s;
+            margin-left: 10px; 
+        }
+        .sidebar ul button:hover {
+            background-color: rgb(255, 0, 255);
+            color: white;
+        }
+        .post-placeholder {
+            background-color: #1a1b20;
+            padding: 40px;
+            text-align: center;
+            color: rgb(0, 255, 0);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-left: 20px; 
+            flex-grow: 1; 
+        }
+        .post-placeholder button {
+            background-color: rgb(0, 255, 0);
+            color: black;
+            border: none;
+            padding: 10px;
+            width: 200px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.35s;
+            margin-left: 10px; 
+        }
+        .post-placeholder button:hover {
+            background-color: rgb(255, 0, 255);
+            color: white;
+        }
+        footer {
+            background-color: #1a1b20;
+            color: rgb(0,255,0);
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }   
+        header .Heading {
+            font-size: 30px;
+            font-weight: bold;
+            background: linear-gradient(270deg, #ff0080, #ff8c00, #ffd700, #00ff00, #00ffff, #0000ff, #800080);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 8s ease infinite;
+            margin: 0; 
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="Heading">DevNexus Dashboard</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <i class="fas fa-search search-icon"></i>
+    </div>
+    <div class="actions">
+        <button class="nav-btn">Create Post <i class="fas fa-plus"></i></button>
+        <div class="notification">
+            <i class="fas fa-bell"></i>
+        </div>
+        <i class="fas fa-user-circle profile-pic"></i>
+    </div>
+</header>
+
+<div class="container">
+    <div class="dashboard-header">
+        <div>0<br>Total post reactions</div>
+        <div>0<br>Total post comments</div>
+        <div>< 500<br>Total post views</div>
+    </div>
+</div>
+    <div class="main-content">
+        <div class="sidebar">
+            <span class = "borderLine"></span>
+            <ul>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">Series</a></li>
+                <li><a href="#">Followers</a></li>
+                <li><a href="#">Following tags</a></li>
+                <li><a href="#">Following users</a></li>
+                <li><a href="#">Following organizations</a></li>
+                <li><a href="#">Following podcasts</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Hidden tags</a></li>
+            <button>Upload a video</button>
+            </ul>
+        </div>
+        <div class="post-placeholder">
+            <img src="th.png" alt="Sloth Image" width="200">
+            <p>This is where you can manage your posts, but you haven't written anything yet.</p>
+            <button>Write your first post now</button>
+        </div>
+    </div>
+<footer>
+    <p>Thank you to our Diamond Sponsor Neon for supporting our community.</p>
+</footer>
+
+</body>
+</html>
