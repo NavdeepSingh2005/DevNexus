@@ -1,80 +1,133 @@
-// // script.js
-// document.getElementById('menu-toggle').addEventListener('click', function () {
-//     document.getElementById('left-sidebar').classList.toggle('-translate-x-full');
-// });
-// document.addEventListener("DOMContentLoaded", function() {
-//     const navbarItems = document.querySelectorAll("#navbar li");
-//     const breadcrumb = document.getElementById("breadcrumb");
-//     const mainContent = document.getElementById("main-content");
-
-//     navbarItems.forEach(item => {
-//         item.addEventListener("click", function() {
-//             const tag = this.getAttribute("data-tag");
-//             updateBreadcrumb(tag);
-//             updateMainContent(tag);
-//         });
-//     });
-
-//     function updateBreadcrumb(tag) {
-//         breadcrumb.textContent = `Home > ${tag.charAt(0).toUpperCase() + tag.slice(1)}`;
-//     }
-
-//     function updateMainContent(tag) {
-//         switch (tag) {
-//             case "home":
-//                 break;
-//             case "tags":
-//                 mainContent.innerHTML = `<h1>Tags</h1><p>Here are some tags you can explore.</p>`;
-//                 break;
-//             case "about":
-//                 mainContent.innerHTML = `<h1>About Us</h1><p>Learn more about us here.</p>`;
-//                 break;
-//             case "contact":
-//                 mainContent.innerHTML = `<h1>Contact Us</h1><p>Get in touch with us!</p>`;
-//                 break;
-//             default:
-//                 mainContent.innerHTML = `<h1>Welcome to the Homepage</h1><p>This is the main content area.</p>`;
-//         }
-//     }
-// });
-
-// script.js
-
-document.addEventListener("DOMContentLoaded", function() {
-    const navbarItems = document.querySelectorAll("#navbar li");
-    const breadcrumb = document.getElementById("breadcrumb");
-    const mainContent = document.getElementById("main-content");
-
-    navbarItems.forEach(item => {
-        item.addEventListener("click", function() {
-            const page = this.getAttribute("data-tag");
-            updateBreadcrumb(page);
-            loadContent(page);
-        });
-    });
-
-    function updateBreadcrumb(page) {
-        const pageName = page.split('.')[0].charAt(0).toUpperCase() + page.split('.')[0].slice(1);
-        breadcrumb.textContent = `Home > ${pageName}`;
-    }
-
-    function loadContent(page) {
-        fetch(page)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.text();
-            })
-            .then(html => {
-                mainContent.innerHTML = html;
-                 // Change the URL without reloading the page
-                 const newUrl = window.location.origin + '/' + page; // Adjust as needed
-                 history.pushState({ page: page }, '', newUrl);
-             
-            })
-            .catch(error => {
-                mainContent.innerHTML = `<h1>Error Loading Content</h1><p>${error.message}</p>`;
-            });
-    }
+document.getElementById('menu-toggle').addEventListener('click', function () {
+    document.getElementById('left-sidebar').classList.toggle('open');
 });
+document.getElementById("createPostBtn").addEventListener('click', () => {
+    document.getElementById('default').classList.add('hidden');
+    document.getElementById('writer').classList.remove('hidden');
+})
+
+document.getElementById("dashboard").addEventListener('click', () => {
+    document.getElementById('main-content').classList.add('hidden');
+    document.getElementById('right-sidebar').classList.remove('xl:block');
+    document.getElementById('main-content-tags').classList.add('hidden');
+    document.getElementById('main-content-dashboard').classList.remove('hidden');
+    document.getElementById('main-content-about').classList.add('hidden');
+})
+
+document.getElementById("tags").addEventListener('click', () => {
+    document.getElementById('main-content').classList.add('hidden');
+    document.getElementById('right-sidebar').classList.remove('xl:block');
+    document.getElementById('main-content-dashboard').classList.add('hidden');
+    document.getElementById('main-content-tags').classList.remove('hidden');
+    document.getElementById('main-content-about').classList.add('hidden');
+})
+
+
+document.getElementById("about").addEventListener('click', () => {
+    document.getElementById('main-content-about').classList.remove('hidden');
+    document.getElementById('main-content').classList.add('hidden');
+    document.getElementById('right-sidebar').classList.remove('xl:block');
+    document.getElementById('main-content-dashboard').classList.add('hidden');
+    document.getElementById('main-content-tags').classList.add('hidden');
+})
+document.getElementById("profile").addEventListener('click', () => {
+    document.getElementById('main-content-about').classList.add('hidden');
+    document.getElementById('main-content').classList.add('hidden');
+    document.getElementById('right-sidebar').classList.remove('xl:block');
+    document.getElementById('main-content-dashboard').classList.add('hidden');
+    document.getElementById('main-content-tags').classList.add('hidden');
+    document.getElementById('main-content-profile').classList.remove('hidden');
+})
+
+const searchBox = document.getElementById('searchBox');
+const tagContainer = document.getElementById('tagContainer');
+const tags = tagContainer.getElementsByClassName('tag');
+
+searchBox.addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+    Array.from(tags).forEach(tag => {
+        const tagText = tag.textContent.toLowerCase();
+        tag.style.display = tagText.includes(query) ? 'inline-block' : 'none';
+    });
+});
+
+
+function markdownToHTML(markdown) {
+    markdown = markdown.replace(/^# (.+)$/gm, '<h1 class="text-3xl font-bold mt-4 mb-2">$1</h1>');
+    markdown = markdown.replace(/^## (.+)$/gm, '<h2 class="text-2xl font-semibold mt-3 mb-1">$1</h2>');
+    markdown = markdown.replace(/^### (.+)$/gm, '<h3 class="text-xl font-medium mt-2 mb-1">$1</h3>');
+    markdown = markdown.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold">$1</strong>');
+    markdown = markdown.replace(/\*(.+?)\*/g, '<em class="italic">$1</em>');
+    markdown = markdown.replace(/^- (.+)$/gm, '<li class="list-disc pl-5">$1</li>');
+    markdown = markdown.replace(/^\d+\. (.+)$/gm, '<li class="list-decimal pl-5">$1</li>');
+    markdown = markdown.replace(/<li>(.+)<\/li>/g, '<ul class="mb-2"><li>$1</li></ul>');
+    markdown = markdown.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-blue-500 hover:underline">$1</a>');
+    markdown = markdown.replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1" class="mt-4 max-w-full h-auto">');
+    return markdown;
+}
+
+function generatePost() {
+    var markdownInput = document.getElementById('markdown-input').value;
+    var preview = document.getElementById('preview');
+
+    // Show preview and hide textarea
+    preview.innerHTML = markdownToHTML(markdownInput);
+    document.getElementById('markdown-input').classList.add('hidden');
+    preview.classList.remove('hidden');
+}
+
+function closeEditor() {
+    // Optionally handle closing logic here
+}
+
+function formatText(type) {
+    var textarea = document.getElementById('markdown-input');
+    var start = textarea.selectionStart;
+    var end = textarea.selectionEnd;
+    var selectedText = textarea.value.substring(start, end);
+    var replacement = '';
+
+    switch (type) {
+        case 'bold':
+            replacement = `**${selectedText}**`;
+            break;
+        case 'italic':
+            replacement = `*${selectedText}*`;
+            break;
+        case 'link':
+            replacement = `[${selectedText}](url)`;
+            break;
+        case 'ol':
+            replacement = `1. ${selectedText}`;
+            break;
+        case 'ul':
+            replacement = `- ${selectedText}`;
+            break;
+        case 'h1':
+            replacement = `# ${selectedText}`;
+            break;
+        case 'h2':
+            replacement = `## ${selectedText}`;
+            break;
+        case 'h3':
+            replacement = `### ${selectedText}`;
+            break;
+        case 'code':
+            replacement = `\`${selectedText}\``;
+            break;
+        case 'quote':
+            replacement = `> ${selectedText}`;
+            break;
+        case 'image':
+            replacement = `![${selectedText}](image_url)`;
+            break;
+    }
+
+    textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+    textarea.focus();
+    textarea.selectionStart = start + replacement.length;
+    textarea.selectionEnd = start + replacement.length;
+}
+
+
+

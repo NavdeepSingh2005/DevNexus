@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevNexus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        bg: "#1B1B1E",
+                        // 'bg' : 'black',
+                        sidebar: "#1e1e1e",
+                        card: "#1e1e1e",
+                        text: "#ccc",
+                        // 'text': '#0f0',
+                        muted: "#888",
+                        hover: "#333",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        @media (max-width: 1024px) {
+            #left-sidebar {
+                transform: translateX(-100%);
+            }
+
+            #left-sidebar.open {
+                transform: translateX(0);
+            }
+        }
+
+        #markdown-input,
+        #preview {
+            height: 60vh;
+        }
+    </style>
+</head>
+
+<body class="bg-bg text-text" style="font-family: 'Segoe UI'">
+    <div id="default" class="flex">
+        <!-- Left Sidebar -->
+        <aside id="left-sidebar"
+            class="fixed w-64 h-full bg-sidebar p-5 overflow-y-auto transition-transform duration-300 ease-in-out transform -translate-x-full lg:translate-x-0 z-10">
+            <!-- <button id="menu-toggle" class="fixed top-4 left-4 z-50 text-2xl">☰</button> -->
+            <div class="text-center mb-8">
+                <a href="/devnexus1/dist/index.html">
+                    <h1 class="text-xl font-bold">DevNexus</h1>
+                </a>
+                <p class="text-sm text-muted mt-4">Blog, Share, Inspire!</p>
+            </div>
+            <nav>
+                <ul class="space-y-2" id="navbar">
+                    <a href="/devnexus1/dist/index.html">
+                        <li class="flex items-center space-x-2 py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-home"></i>
+                            <span>HOME</span>
+                        </li>
+                    </a>
+                    <a href="profile.html" class="mt-2">
+                        <li class="flex items-center space-x-2 py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </li>
+                    </a>
+                    <li id="dashboard"
+                        class="flex items-center space-x-2 py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white">
+                        <i class="fas fa-stream"></i>
+                        <span>DASHBOARD</span>
+                    </li>
+                    <li id="tags"
+                        class="flex items-center space-x-2 py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white">
+                        <i class="fas fa-tags"></i>
+                        <span>TAGS</span>
+                    </li>
+
+                    <li id="about"
+                        class="flex items-center space-x-2 py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white">
+                        <i class="fas fa-info-circle"></i>
+                        <span>ABOUT</span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="main-wrapper lg:ml-64 w-full h-full flex flex-col">
+            <!-- top bar -->
+            <header class="w-full h-12 flex items-center pl-5 pr-5 justify-between">
+                <nav class="hidden xl:flex lg:flex">
+                    <span class="text-text" id="breadcrumb">Home</span>
+                </nav>
+                <nav class="lg:hidden xl:hidden flex flex-1 justify-between items-center">
+                    <button id="menu-toggle" class="z-55 text-2xl">☰</button>
+                    <h1 class="text-xl font-bold">DevNexus</h1>
+                    <div class="flex justify-between items-center gap-2">
+                        <i class="fas fa-user-circle text-xl"></i>
+                    </div>
+                </nav>
+
+                <div class="items-center gap-4 lg:flex xl:flex hidden">
+                    <!-- search bar -->
+                    <search id="search" class="max-w-52 border flex rounded-2xl p-2 items-center"
+                        onkeypress="showSearch()">
+                        <i class="fas fa-search fa-fw"></i>
+                        <input class="ml-2 bg-bg h-full w-full outline-none" type="search" aria-label="search"
+                            autocomplete="off" placeholder="Search..." />
+                    </search>
+                    <button id="createPostBtn" class="border p-2 rounded-2xl">
+                        Create Post
+                    </button>
+                    <i class="fas fa-bell text-xl"></i>
+                    <a href="profile.html" class="lg:hidden xl:hidden"><i class="fas fa-user-circle text-xl"></i></a>
+                </div>
+            </header>
+            <div class="flex justify-center">
+                <div class="container flex w-full">
+                    <!-- Main Content default-->
+                    <main id="main-content" class="flex-grow p-5 flex w-full items-center">
+                        <div
+                            class="space-y-6 xl:pl-6 xl:pr-6 lg:pl-6 lg:pr-6 w-full flex flex-1 flex-col justify-center">
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold   mt-4">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold mb-3">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold mb-3">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold mb-3">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold mb-3">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold mb-3">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold mb-3">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                <div class="flex flex-1 space-x-4">
+                                    <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                    <div>
+                                        <span class="font-semibold">User Name</span>
+                                        <div class="text-xs font-light text-gray-400">Sept 1</div>
+                                        <h2 class="text-lg font-bold mb-3">
+                                            5 Critical Mistakes to Avoid When Starting a New React
+                                            Project in 2024: A Beginner Guide 🚀
+                                        </h2>
+                                        <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                            <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                            <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <button
+                                class="min-w-3 bg-green-500 text-black py-2 px-5 rounded-lg hover:bg-pink-500 transition">
+                                Read More
+                            </button>
+                        </div>
+                    </main>
+                    <!-- Main Content Dashboard -->
+                    <div id="main-content-dashboard" class="flex-col w-full hidden">
+                        <!-- Main Content -->
+                        <div class="flex flex-1 p-5 flex-col">
+                            <!-- analytics -->
+                            <div class="flex flex-1 justify-between w-full mb-5 gap-3">
+                                <div
+                                    class="text-green-500 bg-gray-800 h-24 w-full sm:w-1/3 mb-4 sm:mb-0 rounded-lg p-5 flex items-center justify-center border-2 border-gray-800 hover:border-green-500 hover:scale-105 transition-transform">
+                                    0<br />Total post reactions
+                                </div>
+                                <div
+                                    class="text-green-500 bg-gray-800 h-24 w-full sm:w-1/3 mb-4 sm:mb-0 rounded-lg p-5 flex items-center justify-center border-2 border-gray-800 hover:border-green-500 hover:scale-105 transition-transform ease-in duration-300">
+                                    0<br />Total post comments
+                                </div>
+                                <div
+                                    class="text-green-500 bg-gray-800 h-24 w-full sm:w-1/3 rounded-lg p-5 flex items-center justify-center border-2 border-gray-800 hover:border-green-500 hover:scale-105 transition-transform">
+                                    500<br />Total post views
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <!-- left sidebar -->
+                                <div
+                                    class="w-full sm:w-1/4 p-5 rounded-md shadow-lg relative overflow-hidden hidden xl:block">
+                                    <span class="w-64 h-80"></span>
+                                    <ul class="list-none p-2 bg-gray-800 rounded-lg relative">
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Posts</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Series</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Followers</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Following tags</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Following users</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Following
+                                                organizations</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Following
+                                                podcasts</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Analytics</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#" class="text-green-500 hover:text-pink-500">Hidden tags</a>
+                                        </li>
+                                        <button
+                                            class="bg-green-500 text-black py-2 px-4 mt-4 w-full rounded-lg hover:bg-pink-500 hover:text-white transition-colors">
+                                            Upload a video
+                                        </button>
+                                    </ul>
+                                </div>
+                                <!-- Posts -->
+                                <div
+                                    class="space-y-6 xl:pl-6 xl:pr-6 lg:pl-6 lg:pr-6 w-full flex flex-1 flex-col justify-center">
+                                    <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                        <div class="flex flex-1 space-x-4">
+                                            <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                            <div>
+                                                <span class="font-semibold">User Name</span>
+                                                <div class="text-xs font-light text-gray-400">
+                                                    Sept 1
+                                                </div>
+                                                <h2 class="text-lg font-bold mb-3">
+                                                    5 Critical Mistakes to Avoid When Starting a New
+                                                    React Project in 2024: A Beginner Guide 🚀
+                                                </h2>
+                                                <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                                    <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                        <div class="flex flex-1 space-x-4">
+                                            <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                            <div>
+                                                <span class="font-semibold">User Name</span>
+                                                <div class="text-xs font-light text-gray-400">
+                                                    Sept 1
+                                                </div>
+                                                <h2 class="text-lg font-bold mb-3">
+                                                    5 Critical Mistakes to Avoid When Starting a New
+                                                    React Project in 2024: A Beginner Guide 🚀
+                                                </h2>
+                                                <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                                    <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                        <div class="flex flex-1 space-x-4">
+                                            <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                            <div>
+                                                <span class="font-semibold">User Name</span>
+                                                <div class="text-xs font-light text-gray-400">
+                                                    Sept 1
+                                                </div>
+                                                <h2 class="text-lg font-bold mb-3">
+                                                    5 Critical Mistakes to Avoid When Starting a New
+                                                    React Project in 2024: A Beginner Guide 🚀
+                                                </h2>
+                                                <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                                    <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                        <div class="flex flex-1 space-x-4">
+                                            <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                            <div>
+                                                <span class="font-semibold">User Name</span>
+                                                <div class="text-xs font-light text-gray-400">
+                                                    Sept 1
+                                                </div>
+                                                <h2 class="text-lg font-bold mb-3">
+                                                    5 Critical Mistakes to Avoid When Starting a New
+                                                    React Project in 2024: A Beginner Guide 🚀
+                                                </h2>
+                                                <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                                    <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="bg-card p-5 rounded-lg hover:bg-hover transition duration-300">
+                                        <div class="flex flex-1 space-x-4">
+                                            <img src="images/proff.jpg" class="h-9 w-9 rounded-full" alt="User" />
+                                            <div>
+                                                <span class="font-semibold">User Name</span>
+                                                <div class="text-xs font-light text-gray-400">
+                                                    Sept 1
+                                                </div>
+                                                <h2 class="text-lg font-bold mb-3">
+                                                    5 Critical Mistakes to Avoid When Starting a New
+                                                    React Project in 2024: A Beginner Guide 🚀
+                                                </h2>
+                                                <div class="flex flex-wrap space-x-2 mt-4 text-lime-400 gap-2">
+                                                    <a href="#" class="hover:text-fuchsia-500">#webdev</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#programming</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#api</a>
+                                                    <a href="#" class="hover:text-fuchsia-500">#javascript</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <button
+                                        class="min-w-3 bg-green-500 text-black py-2 px-5 rounded-lg hover:bg-pink-500 transition">
+                                        Read More
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Section -->
+                        <footer class="bg-gray-800 p-5 text-center mt-8 w-full">
+                            <div class="font-bold mb-2">
+                                Thank you to our Diamond Sponsor
+                                <span class="text-green-500">Neon</span> for supporting our
+                                community.
+                            </div>
+                            <div class="mb-4">
+                                DEV Community — A constructive and inclusive social network
+                                for software developers. With you every step of your journey.
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex flex-wrap justify-center">
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Home</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV++</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Podcasts</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Videos</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Tags</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV Help</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Forem Shop</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Advertise on DEV</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV Challenges</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV Showcase</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">About</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Contact</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Guides</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Software comparisons</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex flex-wrap justify-center">
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Code of Conduct</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Privacy Policy</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Terms of use</a>
+                                </div>
+                            </div>
+                            <div class="text-gray-400 text-sm">
+                                Built on
+                                <a href="#" class="text-blue-500 hover:underline">Forem</a> —
+                                the
+                                <a href="#" class="text-blue-500 hover:underline">open source</a>
+                                software that powers DEV and other inclusive communities.<br />
+                                Made with love and
+                                <a href="#" class="text-blue-500 hover:underline">Ruby on Rails</a>. DEV Community ©
+                                2016 - 2024.
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- Main content tags -->
+                    <div id="main-content-tags" class="flex-col w-full hidden">
+                        <header class="px-6 py-5 flex justify-between mb-3 w-full flex-wrap">
+                            <div class="flex space-x-4 justify-center items-center flex-wrap">
+                                <button
+                                    class="nav-btn bg-green-400 text-black font-bold text-sm px-4 py-2 rounded-lg transition duration-300 hover:bg-pink-500 hover:text-white">
+                                    Following Tags
+                                </button>
+                                <button
+                                    class="nav-btn bg-green-400 text-black font-bold text-sm px-4 py-2 rounded-lg transition duration-300 hover:bg-pink-500 hover:text-white">
+                                    Hidden Tags
+                                </button>
+                                <span class="relative">
+                                    <input type="text" id="searchBox"
+                                        class="search-bar bg-gray-800 text-white text-sm px-3 py-2 rounded-lg"
+                                        placeholder="Search for tag" />
+                                    <i
+                                        class="fas fa-search search-icon absolute top-1/2 right-3 transform -translate-y-1/2 text-white"></i>
+                                </span>
+                            </div>
+                        </header>
+
+                        <main id="tagContainer" class="flex flex-wrap mx-4 justify-start items-center">
+                            
+                            <div class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#webdev</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#python</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#ai</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#javascript</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#css</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                        </main>
+
+                    </div>
+                    <!-- Main content about -->
+                    <div id="main-content-about" class="flex-col hidden">
+                        <div class="flex flex-col text-white font-sans max-w-2xl mx-auto p-5">
+                            <h1 class="text-4xl mb-5">About DEV</h1>
+                            <p class="mb-4">
+                                DEV is a community of software developers getting together to
+                                help one another out. The software industry relies on
+                                collaboration and networked learning. We provide a place for
+                                that to happen.
+                            </p>
+
+                            <p class="mb-4">
+                                DEV is built on
+                                <a href="#" class="text-blue-500 hover:underline">Forem</a>:
+                                open source software designed to empower communities. Because
+                                our application is
+                                <a href="#" class="text-blue-500 hover:underline">open source</a>, you can inspect every
+                                little detail of the code, or chip in
+                                yourself! Forem is available for anyone interested in creating
+                                similar communities in any niche or passion. Visit our meta
+                                Forem,
+                                <a href="https://forem.dev" class="text-blue-500 hover:underline">forem.dev</a>
+                                for more information.
+                            </p>
+
+                            <p class="mb-4">
+                                We believe in transparency and adding value to the ecosystem.
+                                We hope you enjoy poking around and participating!
+                            </p>
+
+                            <h2 class="text-3xl mt-8 mb-5">Leadership</h2>
+                            <img src="./leaders.jpg" alt="DEV Leadership Team" class="rounded-lg mt-5 w-full h-auto" />
+                        </div>
+                        <footer class="bg-gray-800 p-5 text-center mt-8 w-full">
+                            <div class="font-bold mb-2">
+                                Thank you to our Diamond Sponsor
+                                <span class="text-green-500">Neon</span> for supporting our
+                                community.
+                            </div>
+                            <div class="mb-4">
+                                DEV Community — A constructive and inclusive social network
+                                for software developers. With you every step of your journey.
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex flex-wrap justify-center">
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Home</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV++</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Podcasts</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Videos</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Tags</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV Help</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Forem Shop</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Advertise on DEV</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV Challenges</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">DEV Showcase</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">About</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Contact</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Guides</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Software comparisons</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex flex-wrap justify-center">
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Code of Conduct</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Privacy Policy</a>
+                                    <a href="#" class="text-blue-500 hover:underline mx-2">Terms of use</a>
+                                </div>
+                            </div>
+                            <div class="text-gray-400 text-sm">
+                                Built on
+                                <a href="#" class="text-blue-500 hover:underline">Forem</a> —
+                                the
+                                <a href="#" class="text-blue-500 hover:underline">open source</a>
+                                software that powers DEV and other inclusive communities.<br />
+                                Made with love and
+                                <a href="#" class="text-blue-500 hover:underline">Ruby on Rails</a>. DEV Community ©
+                                2016 - 2024.
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- Right Sidebar -->
+                    <aside id="right-sidebar" class="w-1/4 p-5 hidden xl:block">
+                        <div class="mb-8 border-l">
+                            <h3 class="text-lg font-bold mb-4 pl-4">Recently Updated</h3>
+                            <ul class="space-y-2 text-sm pl-4">
+                                <li>Getting Started</li>
+                                <li>Text and Typography</li>
+                                <li>Writing a New Post</li>
+                                <li>Customize the Favicon</li>
+                            </ul>
+                        </div>
+                        <div class="border-l">
+                            <h3 class="text-lg font-bold mb-4 pl-4">Trending Tags</h3>
+                            <div class="flex flex-wrap gap-2 pl-4">
+                                <span
+                                    class="bg-card px-2 py-1 rounded text-xs hover:bg-gray-700 transition ease-in duration-100">favicon</span>
+                                <span class="bg-card px-2 py-1 rounded text-xs hover:bg-gray-700">letting started</span>
+                                <span class="bg-card px-2 py-1 rounded text-xs hover:bg-gray-700">typography</span>
+                                <span class="bg-card px-2 py-1 rounded text-xs hover:bg-gray-700">writing</span>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- bottom bar -->
+                    <div id="bottom-bar"
+                        class="lg:hidden xl:hidden sm:block md:hidden fixed bottom-0 left-0 w-full h-16 bg-bg">
+                        <nav class="h-full">
+                            <ul class="flex flex-1 h-full">
+                                <li class="h-full w-1/3 flex items-center justify-center">
+                                    <i class="fas fa-home fa-fw"></i>
+                                </li>
+                                <li class="h-full w-1/3 flex items-center justify-center">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </li>
+                                <li id="createPostBtn" class="h-full w-1/3 flex items-center justify-center">
+                                    <i class="fas fa-plus fa-fw"></i>
+                                </li>
+
+                                <li class="h-full w-1/3 flex items-center justify-center">
+                                    <i class="fas fa-bell text-xl"></i>
+                                </li>
+                                <li class="h-full w-1/3 flex items-center justify-center">
+                                    <i class="fas fa-gear text-xl"></i>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="writer" class="hidden">
+        <header class="bg-bg text-white p-5 text-center flex items-center justify-between h-12">
+            <a href="index.html">
+                <h1 class="text-green-500 text-xl">DevNexus</h1>
+            </a>
+            <h1 class="text-xl font-semibold">Create Post</h1>
+            <a href="index.html">
+                <i class="fa-solid fa-xmark text-xl cursor-pointer"></i>
+            </a>
+        </header>
+        <main class="p-5 flex bg-bg">
+            <div id="editor"
+                class="w-full flex flex-col md:flex-row bg-bg p-4 border border-gray-300 rounded justify-center">
+                <div class="w-full md:w-2/3 h-[60vh] md:h-auto">
+                    <div class="mb-4">
+                        <button class="bg-bg border border-gray-300 p-2 rounded text-text">
+                            Add a cover image
+                        </button>
+                    </div>
+                    <div class="mb-4">
+                        <input type="text" class="text-text bg-card w-full p-2 border border-gray-300 rounded"
+                            placeholder="Post title here.." />
+                    </div>
+                    <div class="mb-4">
+                        <input type="text" class="text-text bg-card w-full p-2 border border-gray-300 rounded"
+                            placeholder="Add up to 4 tags..." />
+                    </div>
+                    <div class="bg-card text-text p-2 mb-2 flex space-x-2">
+                        <button onclick="formatText('bold')" class="hover:bg-gray-700 p-1 rounded">
+                            B
+                        </button>
+                        <button onclick="formatText('italic')" class="hover:bg-gray-700 p-1 rounded">
+                            I
+                        </button>
+                        <button onclick="formatText('link')" class="hover:bg-gray-700 p-1 rounded">
+                            🔗
+                        </button>
+                        <button onclick="formatText('ol')" class="hover:bg-gray-700 p-1 rounded">
+                            1.
+                        </button>
+                        <button onclick="formatText('ul')" class="hover:bg-gray-700 p-1 rounded">
+                            •
+                        </button>
+                        <button onclick="formatText('h1')" class="hover:bg-gray-700 p-1 rounded">
+                            H1
+                        </button>
+                        <button onclick="formatText('h2')" class="hover:bg-gray-700 p-1 rounded">
+                            H2
+                        </button>
+                        <button onclick="formatText('h3')" class="hover:bg-gray-700 p-1 rounded">
+                            H3
+                        </button>
+                        <button onclick="formatText('code')" class="hover:bg-gray-700 p-1 rounded">
+                            &lt;&gt;
+                        </button>
+                        <button onclick="formatText('quote')" class="hover:bg-gray-700 p-1 rounded">
+                            "
+                        </button>
+                        <button onclick="formatText('image')" class="hover:bg-gray-700 p-1 rounded">
+                            🖼
+                        </button>
+                    </div>
+                    <textarea id="markdown-input" placeholder="Write your Post content here..."
+                        class="w-full h-full text-lg p-4 border border-gray-300 rounded outline-none bg-card text-text resize-none"></textarea>
+                    <div id="preview" class="hidden w-full h-full border border-gray-300 p-5 rounded bg-card text-text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/3 mt-4 md:mt-0 md:ml-4 p-4 rounded text-text hidden">
+                <h3 class="text-xl font-semibold mb-2">Markdown Symbols Guide</h3>
+                <ul class="list-disc list-inside">
+                    <li><strong>#</strong> - Heading 1</li>
+                    <li><strong>##</strong> - Heading 2</li>
+                    <li><strong>###</strong> - Heading 3</li>
+                    <li><strong>**text**</strong> - Bold text</li>
+                    <li><strong>*text*</strong> - Italic text</li>
+                    <li><strong>1.</strong> - Numbered list</li>
+                    <li><strong>-</strong> or <strong>*</strong> - Bullet list</li>
+                    <li><strong>[link](url)</strong> - Hyperlink</li>
+                    <li><strong>![alt text](image_url)</strong> - Image</li>
+                </ul>
+            </div>
+        </main>
+        <div class="flex justify-center">
+            <button onclick="generatePost()" class="bg-green-700 text-white mt-4 py-2 px-5 rounded hover:bg-green-800">
+                Generate Post
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
