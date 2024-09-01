@@ -1,6 +1,10 @@
 document.getElementById('menu-toggle').addEventListener('click', function () {
     document.getElementById('left-sidebar').classList.toggle('open');
 });
+
+function right(){
+    document.getElementById('left-sidebar').classList.toggle('open');
+}
 document.getElementById("createPostBtn").addEventListener('click', () => {
     document.getElementById('default').classList.add('hidden');
     document.getElementById('writer').classList.remove('hidden');
