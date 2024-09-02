@@ -317,3 +317,15 @@ main{
 .tags> a:hover{
     color: rgb(255,0,255);
 }
+
+@media screen and (max-width:500px){
+    .badges{
+        display: none;
+    }
+    .rightbar{
+        margin-top: 12px;
+    }
+    #info3{
+        flex-wrap: wrap;
+    }
+}
