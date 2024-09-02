@@ -1,230 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="profile.css">
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            bg: "#1B1B1E",
-            // 'bg' : 'black',
-            sidebar: "#1e1e1e",
-            card: "#1e1e1e",
-            text: "#ccc",
-            // 'text': '#0f0',
-            muted: "#888",
-            hover: "#333",
-          },
-        },
-      },
-    };
-  </script>
+    <link rel="stylesheet" href="profile.css">
 </head>
 
+<style>
+   
+</style>
+<body style="background-color: #1e1e1e;">
+    
+        <div id="cover">
+            
+        </div>
 
-<body style="background-color: #1B1B1E;">
-
-  <div id="cover" style="display:flex; align-items: center;">
-    <a href="index.html">
-      <h2 style="margin-left: 12px;color:rgb(46, 107, 46);">DevNexus</h2>
-    </a>
-  </div>
-  <main>
-    <div class="info">
-      <div class="ibuttons">
-        <button id="follow" class="text-white">Follow</button>
-        <button id="more">...</button>
-      </div>
-      <div class="uname" style="color: aliceblue;">
-        User Name
-      </div>
-      <div id="bio" style="color: aliceblue;">User Bio Comes Here...</div>
-      <div id="info3">
-        <div class="location"><img src="images/location-indicator.svg" height="20px"> India</div>
-        <div class="doj"> DateofJoining</div>
-        <a href="#" class="ilink">xyz@gmail.com</a>
-        <a href="#" class="ilink">GitHub <img src="" alt=""></a>
-      </div>
-      <hr class="divider">
-      <div class="badges">
-        <img src="images/badges/sample2.avif" alt="">
-        <img src="images/badges/sample.avif">
-        <img src="images/badges/b1.avif" alt="">
-        <img src="images/badges/python-logo-only.png" alt="py">
-        <img src="images/badges/sample.avif" alt="">
-      </div>
-    </div>
-
-
-    <div class="pp">
-      <img src="images/proff.jpg" height="155px" width="155px" style="border-radius: 50%;" alt="pp">
-    </div>
-
-
-    <div class="sidebar">
-      <div class="skills"><span>Skills and Languages</span>
-        <div class="gradient-divider"></div>
-        <ul>
-          <li>cpp</li>
-          <li>python</li>
-          <li>html</li>
-          <li>CSS</li>
-        </ul>
-      </div>
-      <div class="sideinfo">
-        <ul>
-          <li><i class="fas fa-pencil-alt"></i> 5 posts published</li>
-          <li><i class="fas fa-comments"></i> 10 comments written</li>
-          <li><i class="fas fa-tags"></i> 5 tags followed</li>
-        </ul>
-      </div>
-
-    </div>
-    <div class="rightbar">
-      <div class="comments"> <span style="font-size: larger;">Comments</span>
-
-        <div class="gradient-divider"></div>
-        <div class="com">
-          🚀 Most Useful React Hooks for Your Next Project 🚀
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          🚀 Most Useful React Hooks for Your Next Project 🚀
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          <div class="scom">Alright!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          🚀 Most Useful React Hooks for Your Next Project 🚀
-          <div class="scom">Thanks!</div>
-        </div>
-        <div class="gradient-divider"></div>
-        <div class="com">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          <div class="scom">Yes!</div>
-        </div>
-        <div class="gradient-divider"></div>
-
-      </div>
-      <div class="article">
-        <img src="images/proff.jpg" height="35px" alt="pp">
-        <div class="userdetails"><span class="name">User Name</span>
-          <div class="date">Sept 1</div>
-          <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀
+    <main>
+        <div class="info">
+          <div class="ibuttons"> 
+            <button id="follow">Follow</button>
+            <button id="more"><i class="fas fa-ellipsis"></i></button>
           </div>
-          <div class="tags">
-            <a href="#">#webdev</a>
-            <a href="#">#programming</a>
-            <a href="#">#api</a>
-            <a href="#">#javascript</a>
-
+          <div class="uname" style="color: aliceblue;">
+            User Name
           </div>
-
-        </div>
-      </div>
-
-      <div class="article">
-        <img src="images/proff.jpg" height="35px" alt="pp">
-        <div class="userdetails"><span class="name">User Name</span>
-          <div class="date">Sept 1</div>
-          <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀
+          <div id="bio" style="color: aliceblue;">User Bio Comes Here...</div>
+          <div id="info3">
+            <div class="location"><img src="images/location-indicator.svg" height="20px"> India</div>
+            <div class="doj"> DateofJoining</div>
+            <a href="#" class="ilink" >xyz@gmail.com</a>
+            <a href="#" class="ilink" >GitHub <img src="" alt=""></a>
           </div>
-          <div class="tags">
-            <a href="#">#webdev</a>
-            <a href="#">#programming</a>
-            <a href="#">#api</a>
-            <a href="#">#javascript</a>
-
+          <hr class="divider">
+          <div class="badges">
+          <img src="images/badges/sample2.avif" alt="">
+          <img src="images/badges/sample.avif">
+          <img src="images/badges/b1.avif" alt="">
+          <img src="images/badges/python-logo-only.png" alt="py">
+          <img src="images/badges/sample.avif" alt="">
           </div>
         </div>
-      </div>
-
-      <div class="article">
-        <img src="images/proff.jpg" height="35px" alt="pp">
-        <div class="userdetails"><span class="name">User Name</span>
-          <div class="date">Sept 1</div>
-          <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀
-          </div>
-          <div class="tags">
-            <a href="#">#webdev</a>
-            <a href="#">#programming</a>
-            <a href="#">#api</a>
-            <a href="#">#javascript</a>
-
-          </div>
+        
+       
+        <div class="pp">
+            <img src="images/proff.jpg" height="155px" width="155px" style="border-radius: 50%;" alt="pp">
         </div>
-      </div>
-
-      <div class="article">
-        <img src="images/proff.jpg" height="35px" alt="pp">
-        <div class="userdetails"><span class="name">User Name</span>
-          <div class="date">Sept 1</div>
-          <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀
+       
+        
+        <div class="sidebar">
+          <div class="skills"><span>Skills and Languages</span>
+          <div class="gradient-divider"></div>
+          <ul>
+            <li>cpp</li>
+            <li>python</li>
+            <li>html</li>
+            <li>CSS</li>
+          </ul>
           </div>
-          <div class="tags">
-            <a href="#">#webdev</a>
-            <a href="#">#programming</a>
-            <a href="#">#api</a>
-            <a href="#">#css</a>
-
-          </div>
+          <div class="sideinfo">
+            <ul>
+                <li><i class="fas fa-pencil-alt"></i> 5 posts published</li>
+                <li><i class="fas fa-comments"></i> 10 comments written</li>
+                <li><i class="fas fa-tags"></i> 5 tags followed</li>
+            </ul>
         </div>
-      </div>
-      <div class="article">
-        <img src="images/proff.jpg" height="35px" alt="pp">
-        <div class="userdetails"><span class="name">User Name</span>
-          <div class="date">Sept 1</div>
-          <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀
-          </div>
-          <div class="tags">
-            <a href="#">#webdev</a>
-            <a href="#">#programming</a>
-            <a href="#">#api</a>
-            <a href="#">#javascript</a>
-
-          </div>
+        
         </div>
 
+        <div class="rightbar"> 
+          
+          <div class="article">
+             <img src="images/proff.jpg" height="35px" alt="pp"> 
+             <div class="userdetails"><span class="name">User Name</span>
+            <div class="date">Sept 1</div>
+            <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀</div>
+            <div class="tags">
+              <a href="#">#webdev</a>
+              <a href="#">#programming</a>
+              <a href="#">#api</a>
+              <a href="#">#javascript</a>
 
-  </main>
+            </div>
+            <div class="options">
+              <div class="left"> <button class="rxn">🔥 3 reactions</button> <button class="addcom"><i class="fas fa-comments"></i> add comments</button></div>
+              <div class="readtime"> 4 min read</div>
+             </div>
+            
+          </div>
+            </div>
+
+            <div class="article">
+              <img src="images/proff.jpg" height="35px" alt="pp"> 
+              <div class="userdetails"><span class="name">User Name</span>
+             <div class="date">Sept 1</div>
+             <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀</div>
+             <div class="tags">
+               <a href="#">#webdev</a>
+               <a href="#">#programming</a>
+               <a href="#">#api</a>
+               <a href="#">#javascript</a>
+ 
+             </div>
+             <div class="options">
+              <div class="left"> <button class="rxn">🔥 3 reactions</button> <button class="addcom"><i class="fas fa-comments"></i> add comments</button></div>
+              <div class="readtime"> 4 min read</div>
+             </div>
+           </div>
+          </div>
+
+          <div class="article">
+            <img src="images/proff.jpg" height="35px" alt="pp"> 
+            <div class="userdetails"><span class="name">User Name</span>
+           <div class="date">Sept 1</div>
+           <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀</div>
+           <div class="tags">
+             <a href="#">#webdev</a>
+             <a href="#">#programming</a>
+             <a href="#">#api</a>
+             <a href="#">#javascript</a>
+
+           </div>
+           <div class="options">
+            <div class="left"> <button class="rxn">🔥 3 reactions</button> <button class="addcom"><i class="fas fa-comments"></i> add comments</button></div>
+            <div class="readtime"> 4 min read</div>
+           </div>
+         </div>
+        </div>
+
+        <div class="article">
+          <img src="images/proff.jpg" height="35px" alt="pp"> 
+          <div class="userdetails"><span class="name">User Name</span>
+         <div class="date">Sept 1</div>
+         <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀</div>
+         <div class="tags">
+           <a href="#">#webdev</a>
+           <a href="#">#programming</a>
+           <a href="#">#api</a>
+           <a href="#">#css</a>
+
+         </div>
+         <div class="options">
+          <div class="left"> <button class="rxn">🔥 3 reactions</button> <button class="addcom"><i class="fas fa-comments"></i> add comments</button></div>
+          <div class="readtime"> 4 min read</div>
+         </div>
+       </div>
+        </div>
+        <div class="article">
+          <img src="images/proff.jpg" height="35px" alt="pp"> 
+          <div class="userdetails"><span class="name">User Name</span>
+         <div class="date">Sept 1</div>
+         <div class="title">5 Critical Mistakes to Avoid When Starting a New React Project in 2024: A Beginner Guide🚀</div>
+         <div class="tags">
+           <a href="#">#webdev</a>
+           <a href="#">#programming</a>
+           <a href="#">#api</a>
+           <a href="#">#javascript</a>
+
+         </div>
+         <div class="options">
+          <div class="left"> <button class="rxn">🔥 3 reactions</button> <button class="addcom"><i class="fas fa-comments"></i> add comments</button></div>
+          <div class="readtime"> 4 min read</div>
+         </div>
+       </div>
+        </div>
+       <div class="comments"> <span style="font-size: larger;">Comments</span> 
+
+          <div class="gradient-divider"></div>
+          <div class="com">
+            🚀 Most Useful React Hooks for Your Next Project 🚀
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            🚀 Most Useful React Hooks for Your Next Project 🚀
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            <div class="scom">Alright!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            🚀 Most Useful React Hooks for Your Next Project 🚀
+            <div class="scom">Thanks!</div>
+          </div>
+          <div class="gradient-divider"></div>
+          <div class="com">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            <div class="scom">Yes!</div>
+          </div>
+          <div class="gradient-divider"></div>
+
+        </div>
+        
+
+        </div>
+    </main> 
 </body>
-
 </html>

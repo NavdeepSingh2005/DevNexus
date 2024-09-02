@@ -1,7 +1,15 @@
 *{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body{
+    margin: 0;
+    /* background-color:black; */
+    /* background-color:#1a1b20; */
+    background-color: #1C1C1C;
+    /* background-color: #343434; */
 
+
+}
 
 main{
     display: flex;
@@ -27,7 +35,8 @@ main{
     
     /* border: 1px solid black; */
     width: 66%;
-    height: 430px;
+    /* height: 430px; */
+    height: auto;
     position: absolute;
     background-color: #1e1e1e;
     top: 70px;
@@ -65,16 +74,19 @@ main{
     color:rgb(255,0,255) ;
 }
 #follow{
-    font-weight: 600;
+    font-weight: 650;
     width: 70px;
     height: 40px;
     border-radius: 5px;
     border-style: none;
     background-color: rgb(0,255,10);
     transition-duration: .35s;
+    font-size: 15px;
 }
 #more{
-    font-weight: 600;
+    width: 35px;
+    font-weight: 650;
+    font-size: larger;
     border-radius: 5px;
     border-style: none;
     background-color: rgb(0,255,10);
@@ -171,6 +183,7 @@ main{
 
 }
 .sideinfo{
+   
     background-color: #1e1e1e;
     border-radius: 10px;
     padding: 20px;
@@ -181,7 +194,7 @@ main{
     height: 1000px; 
     /* background-color: #1a1b20;  */
     color: aliceblue;
-    margin-top: 405px; 
+    margin-top: 397px; 
     border-radius: 10px;
     display: flex;
    font-weight: 700;
@@ -207,13 +220,15 @@ main{
     background-color: #1e1e1e;
     border-radius: 10px;
     padding: 20px;
-    margin: 2px;
+    margin-top: 10px;
     height: 790px;
     display: flex;
     flex-direction: column;
 }
 .com{
  padding: 7px;
+ border-radius: 10px;
+ transition-duration: .2s;
 }
 .scom{
     font-size: smaller;
@@ -258,7 +273,7 @@ main{
  .article{
     display: flex;
     margin-top: 10px;
-    background-color: #1e1e1e;
+    background-color: #1b1b1b;
     border-radius: 10px;
     padding: 20px;
  }
@@ -286,7 +301,6 @@ main{
 }
 
 .article> img{
-
     border-radius: 50%;
 }
 
@@ -316,4 +330,45 @@ main{
 
 .tags> a:hover{
     color: rgb(255,0,255);
+}
+.com:hover{
+    background-color: rgba(128, 128, 128, 0.244);
+}
+
+.options{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.readtime{
+    font-weight: 400;
+    font-size: 12px;
+}
+.options > .left{
+    display: flex;
+    gap: 10px;
+}
+.left > button{
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    color: aliceblue;
+    background-color: black;
+}
+.left> button:hover{
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.336);
+}
+
+
+@media screen and (max-width:500px){
+    .badges{
+        display: none;
+    }
+    .rightbar{
+        margin-top: 12px;
+    }
+    #info3{
+        flex-wrap: wrap;
+    }
 }
