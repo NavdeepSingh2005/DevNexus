@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Blog Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        bg: "#1B1B1E",
+                        sidebar: "#1e1e1e",
+                        card: "#1e1e1e",
+                        text: "#ccc",
+                        muted: "#888",
+                        hover: "#333",
+                        limeAccent: "#A3E635",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-bg text-text">
+    <div class="main-wrapper">
+        <!-- top bar -->
+        <header class="w-full h-16 flex items-center pl-5 pr-5 justify-between bg-sidebar shadow-lg">
+            <nav class="hidden xl:flex lg:flex items-center">
+                <a href="index.html">
+                <span class="text-lg font-semibold" id="path">Home</span>
+            </a>
+            </nav>
+            <nav class="lg:hidden xl:hidden flex flex-1 justify-between items-center">
+                <button id="menu-toggle" class="z-55 text-2xl">☰</button>
+                <h1 class="text-xl font-bold text-limeAccent">DevNexus</h1>
+                <div class="flex justify-between items-center gap-2">
+                    <i class="fas fa-user-circle text-2xl"></i>
+                </div>
+            </nav>
+
+            <div class="items-center gap-4 lg:flex xl:flex hidden">
+                <!-- search bar -->
+                <div id="search" class="max-w-sm border flex rounded-2xl p-2 items-center bg-card">
+                    <i class="fas fa-search fa-fw"></i>
+                    <input class="ml-2 bg-bg h-full w-full outline-none" type="search" aria-label="search"
+                        autocomplete="off" placeholder="Search..." onkeypress="showSearch()" />
+                </div>
+                <button id="createPostBtn" class="border p-2 rounded-2xl  bg-limeAccent text-black">
+                    Create Post
+                </button>
+                <i class="fas fa-bell text-xl"></i>
+                <a href="profile.html" class="lg:hidden xl:hidden"><i class="fas fa-user-circle text-xl"></i></a>
+            </div>
+        </header>
+
+        <div class="flex mt-8">
+            <!-- main content post -->
+            <main class="flex  h-full w-full justify-center text-white  p-5  gap-3">
+                <div
+                    class=" reactions-bar  lg:flex xl:flex hidden flex-col items-center justify-start  w-14 space-y-4 text-lg text-limeAccent">
+                    <button class="hover:text-hover">👍</button>
+                    <button class="hover:text-hover">💬</button>
+                    <button class="hover:text-hover">🔗</button>
+                </div>
+
+                <div id="post" class="lg:w-1/2 p-5 bg-card rounded-lg shadow-lg w-full">
+                    <h2 class="title text-3xl text-limeAccent font-bold mb-4">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    </h2>
+                    <div class="tags mb-4">
+                        <ul class="flex space-x-2 flex-wrap">
+                            <li class="bg-limeAccent text-black px-3 py-1 rounded-full text-sm font-medium">#python</li>
+                            <li class="bg-limeAccent text-black px-3 py-1 rounded-full text-sm font-medium">#html</li>
+                            <li class="bg-limeAccent text-black px-3 py-1 rounded-full text-sm font-medium">#css</li>
+                        </ul>
+                    </div>
+                    <div class="content leading-relaxed text-muted mb-8">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe repellat facilis dolor, aperiam
+                        nemo eveniet illum exercitationem ad ducimus distinctio tempora facere ipsam veritatis quaerat
+                        consectetur commodi sapiente sunt quod harum odio id! Perspiciatis iure expedita provident
+                        velit, cupiditate amet quo eum facere eligendi voluptas repellendus eveniet doloremque,
+                        laudantium soluta, deserunt quod recusandae? Dolore, maiores. Quia error eius eaque, aliquid
+                        excepturi laboriosam doloribus corporis ducimus quasi blanditiis veniam laborum fugit officiis
+                        suscipit? Accusantium doloremque numquam minima facilis id tempore natus dolor porro itaque
+                        nesciunt reprehenderit rem ex tempora eos consectetur assumenda officiis, sapiente veniam
+                        dolorum! Ea tenetur, explicabo, neque dolorem nihil ratione eos magnam inventore cupiditate
+                        fugit praesentium saepe reiciendis cum ex asperiores quas perspiciatis eius architecto. Minima
+                        commodi nam quibusdam et eos. Eos, atque placeat provident, totam doloribus molestias ex cumque
+                        exercitationem tempore eius fugiat. Maiores sint ab at sunt, magnam consequatur. Officia aliquid
+                        impedit ad perspiciatis amet placeat. Sit, quod amet recusandae aliquam aut in nulla error iste
+                        quia sapiente, vel consequuntur quas ratione eveniet sint dolor placeat a modi sed at alias
+                        facilis expedita! Aspernatur cupiditate quo laudantium voluptatem dignissimos quidem numquam
+                        expedita tenetur, necessitatibus, odit in est nobis sit unde ratione architecto quasi illum quod
+                        cum aliquam ipsum modi, vitae enim rem? Eveniet, beatae. Cumque cupiditate sapiente ea, quia
+                        consectetur, facere commodi ex similique expedita atque earum ratione quod eveniet provident?
+                        Error, at eaque vero cumque, in quos quia modi vel blanditiis esse, eligendi accusamus.
+                        Inventore eos tempora unde tempore neque autem magni totam distinctio quam temporibus. Maxime
+                        deleniti officia suscipit quasi ipsa asperiores soluta esse illo fugit numquam, dicta in
+                        molestias beatae praesentium. Vel, adipisci hic. Asperiores fuga non hic reprehenderit,
+                        accusamus quis est, blanditiis tempore eveniet ducimus aperiam unde voluptas, aliquam architecto
+                        repellat. Dolor in tempora molestiae, alias voluptatibus perspiciatis sequi nemo doloribus
+                        ducimus?
+                    </div>
+                    <div class="comments border-t border-muted pt-4">
+                        <h2>Comments</h2>
+                        <div class="flex mt-5 gap-4 flex-col ">
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-end w-10">
+                                    <i class="fas fa-user border p-3 rounded-3xl"></i>
+                                </div>
+                                <div>
+                                    <textarea placeholder="Add a comment...    " id=""
+                                        class="h-20 p-3 text-white bg-card outline-none border  w-full rounded resize-none">
+
+                            </textarea>
+                                    <button id="createPostBtn" class="border p-2 rounded-2xl  bg-limeAccent text-black">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden flex-col w-1/4 space-y-6 lg:flex xl:flex ">
+                    <div class="author-info p-4 bg-card rounded-lg shadow-lg text-white">
+                        <h2 class="text-xl font-semibold">Author Name</h2>
+                        <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <button class="px-4 py-2 bg-limeAccent text-black rounded-full">Follow</button>
+                    </div>
+                    <div class="more-posts p-4 bg-card rounded-lg shadow-lg">
+                        <h1 class="text-xl font-semibold  mb-3">More from author</h1>
+                        <div class="flex flex-col space-y-2">
+                            <article class="border-b border-muted pb-2">
+                                <h2 class="text-lg font-medium text-white">Title for the article</h2>
+                                <div class="tags">
+                                    <ul class="flex space-x-2 flex-wrap">
+                                        <li class="bg-limeAccent text-black px-3 py-1 rounded-full text-sm font-medium">
+                                            #python</li>
+                                        <li class="bg-limeAccent text-black px-3 py-1 rounded-full text-sm font-medium">
+                                            #html</li>
+                                        <li class="bg-limeAccent text-black px-3 py-1 rounded-full text-sm font-medium">
+                                            #css</li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
