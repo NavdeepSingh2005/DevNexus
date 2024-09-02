@@ -95,7 +95,7 @@
             <!-- top bar -->
             <header class="w-full h-12 flex items-center pl-5 pr-5 justify-between">
                 <nav class="hidden xl:flex lg:flex">
-                    <span class="text-text" id="breadcrumb">Home</span>
+                    <span class="text-text" id="path">Home</span>
                 </nav>
                 <nav class="lg:hidden xl:hidden flex flex-1 justify-between items-center">
                     <button id="menu-toggle" class="z-55 text-2xl">☰</button>
@@ -107,11 +107,10 @@
 
                 <div class="items-center gap-4 lg:flex xl:flex hidden">
                     <!-- search bar -->
-                    <search id="search" class="max-w-52 border flex rounded-2xl p-2 items-center"
-                        onkeypress="showSearch()">
+                    <search id="search" class="max-w-52 border flex rounded-2xl p-2 items-center">
                         <i class="fas fa-search fa-fw"></i>
                         <input class="ml-2 bg-bg h-full w-full outline-none" type="search" aria-label="search"
-                            autocomplete="off" placeholder="Search..." />
+                            autocomplete="off" placeholder="Search..." onkeypress="showSearch()" />
                     </search>
                     <button id="createPostBtn" class="border p-2 rounded-2xl">
                         Create Post
@@ -480,19 +479,105 @@
                                     <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
                                 </div>
                             </div>
+                            <div
+                                class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#algorithms</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div
+                                class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#tutorial</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div
+                                class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#css</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div
+                                class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#css</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div
+                                class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#css</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div
+                                class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#css</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
+                            <div
+                                class="lg:w-64 xl:w-64 sm:w-full md:w-full   bg-card flex flex-wrap flex-col  p-4 border rounded-lg m-2 ">
+                                <a href="#" class="text-green-500 font-semibold">#css</a>
+                                <p id="tagtxt" class="text-gray-600 mt-2">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, hic.
+                                </p>
+                                <div class="fh mt-4 flex space-x-2">
+                                    <button class="fb bg-green-500 text-white py-1 px-3 rounded">Follow</button>
+                                    <button class="fb bg-gray-500 text-white py-1 px-3 rounded">Hide</button>
+                                </div>
+                            </div>
                         </main>
 
                     </div>
+                    <!-- main-content-search -->
+                    <div id="main-content-search" class="hidden flex-col w-full ">
+                        <div class="flex flex-1 p-5 flex-col">
+                            <input class="mt-3 bg-bg h-full w-full outline-none" type="search" aria-label="search"
+                            autocomplete="off" placeholder="Search..."  />
+                            <h1 class="">Search Results</h1>
+                           
+                        </div>
+                    </div>
                     <!-- Main content about -->
-                    <div id="main-content-about" class="flex-col hidden justify-center items-center">
-                        <div class="flex flex-col text-white font-sans max-w-2xl mx-auto p-5 items-center">
+                    <div id="main-content-about" class="flex-col hidden justify-center items-center w-full">
+                        <div class="flex flex-col text-white font-sans max-w-xl mx-auto p-5 items-center ">
                             <h1 class="text-4xl mb-5">About DevNexus</h1>
                             <p class="mb-4">
                                 DEV is a community of software developers getting together to
                                 help one another out. The software industry relies on
                                 collaboration and networked learning. We provide a place for
                                 that to happen.
-                            </p>    
+                            </p>
 
                             <p class="mb-4">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio enim, maiores fuga
@@ -525,7 +610,7 @@
 
 
                                 DEVNEXUS ©
-                                 2024.
+                                2024.
                             </div>
                         </footer>
                     </div>
@@ -683,6 +768,17 @@
     </div>
 
     <script src="script.js" defer></script>
+    <script>
+        function showSearch() {
+            document.getElementById('main-content-about').classList.add('hidden');
+            document.getElementById('main-content').classList.add('hidden');
+            document.getElementById('right-sidebar').classList.remove('xl:block');
+            document.getElementById('main-content-dashboard').classList.add('hidden');
+            document.getElementById('main-content-tags').classList.add('hidden');
+            document.getElementById('main-content-search').classList.remove('hidden');
+
+        }
+    </script>
 </body>
 
 </html>

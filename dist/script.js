@@ -2,6 +2,7 @@ document.getElementById('menu-toggle').addEventListener('click', function () {
     document.getElementById('left-sidebar').classList.toggle('open');
 });
 
+
 function right(){
     document.getElementById('left-sidebar').classList.toggle('open');
 }
@@ -10,7 +11,10 @@ document.getElementById("createPostBtn").addEventListener('click', () => {
     document.getElementById('writer').classList.remove('hidden');
 })
 
+
+
 document.getElementById("dashboard").addEventListener('click', () => {
+    document.getElementById("path").textContent = "Home > Dashboard";
     document.getElementById('main-content').classList.add('hidden');
     document.getElementById('right-sidebar').classList.remove('xl:block');
     document.getElementById('main-content-tags').classList.add('hidden');
@@ -19,6 +23,7 @@ document.getElementById("dashboard").addEventListener('click', () => {
 })
 
 document.getElementById("tags").addEventListener('click', () => {
+    document.getElementById("path").textContent = "Home > Tags";
     document.getElementById('main-content').classList.add('hidden');
     document.getElementById('right-sidebar').classList.remove('xl:block');
     document.getElementById('main-content-dashboard').classList.add('hidden');
@@ -28,6 +33,7 @@ document.getElementById("tags").addEventListener('click', () => {
 
 
 document.getElementById("about").addEventListener('click', () => {
+    document.getElementById("path").textContent = "Home > About";
     document.getElementById('main-content-about').classList.remove('hidden');
     document.getElementById('main-content').classList.add('hidden');
     document.getElementById('right-sidebar').classList.remove('xl:block');
@@ -42,6 +48,8 @@ document.getElementById("profile").addEventListener('click', () => {
     document.getElementById('main-content-tags').classList.add('hidden');
     document.getElementById('main-content-profile').classList.remove('hidden');
 })
+
+
 
 const searchBox = document.getElementById('searchBox');
 const tagContainer = document.getElementById('tagContainer');
@@ -132,6 +140,8 @@ function formatText(type) {
     textarea.selectionStart = start + replacement.length;
     textarea.selectionEnd = start + replacement.length;
 }
+
+
 
 
 
